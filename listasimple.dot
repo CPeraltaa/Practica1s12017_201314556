@@ -1,0 +1,9 @@
+digraph ListaS{
+label= "Lista simple"
+	node [fontcolor="red", height=0.5, color="black"]
+	edge [color="black", dir=fordware]
+nodoHola[label="Palabra: Hola"];
+nodoHola->nodoJotadas;
+nodoJotadas[label="Palabra: Jotadas"];
+
+}

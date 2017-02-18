@@ -1,0 +1,12 @@
+digraph ListaS{
+label= "Lista circular"
+	node [fontcolor="red", height=0.5, color="black"]
+	edge [color="black", dir=fordware]
+nodoAndrea[label="Palabra: Andrea"];
+nodoAndrea->nodoTe;
+nodoTe[label="Palabra: Te"];
+nodoTe->nodoAdoro;
+nodoAdoro[label="Palabra: Adoro"];
+nodoAdoro->nodoAndrea;
+
+}
