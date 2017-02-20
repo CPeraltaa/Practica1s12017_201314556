@@ -27,6 +27,11 @@ public class ListaJugadores {
     
     public ListaJugadores insertar(String name){
         NodoJugadores nuevo = new NodoJugadores(name);
+        for (int i = 0; i<7; i++){
+            //int valor = 
+            //nuevo.fichas.InsertarFinal_ls(letra, i);
+        }
+        
         if(ultimo!=null){
             nuevo.siguiente=ultimo.siguiente;
             ultimo.siguiente=nuevo;            

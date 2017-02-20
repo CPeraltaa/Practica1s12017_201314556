@@ -9,14 +9,15 @@ package practica1;
  *
  * @author Carlos
  */
-public class NodoJugadores {
-    String nombre;
-    NodoJugadores siguiente;
-    ListaFichas fichas;
+public class NodoColaFichas {
+    char letra;
+    int punteo;
+    NodoColaFichas siguiente;
     
-    public NodoJugadores(String name){
-        nombre=name;
-        siguiente=this;
-        fichas = new ListaFichas();
-    }            
+    public NodoColaFichas(char l, int p){
+        letra=l;
+        punteo=p;
+        siguiente=null;
+    }
+    
 }
