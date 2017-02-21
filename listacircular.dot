@@ -2,11 +2,53 @@ digraph ListaS{
 label= "Lista circular"
 	node [fontcolor="red", height=0.5, color="black"]
 	edge [color="black", dir=fordware]
-nodoAndrea[label="Palabra: Andrea"];
-nodoAndrea->nodoTe;
-nodoTe[label="Palabra: Te"];
-nodoTe->nodoAdoro;
-nodoAdoro[label="Palabra: Adoro"];
-nodoAdoro->nodoAndrea;
+nodo1322072946[label="Jugador: carlos"];
+nodo1322072946->nodo895128746;
+nodo1322072946->nodo1536117658;
+nodo1536117658[label="Letra: z\n Puntos: 10"];
+nodo1536117658->nodo1284949605;
+nodo1284949605[label="Letra: a\n Puntos: 1"];
+nodo1284949605->nodo1806131758;
+nodo1806131758[label="Letra: x\n Puntos: 8"];
+nodo1806131758->nodo179913780;
+nodo179913780[label="Letra: e\n Puntos: 1"];
+nodo179913780->nodo726338914;
+nodo726338914[label="Letra: ñ\n Puntos: 8"];
+nodo726338914->nodo1368671104;
+nodo1368671104[label="Letra: a\n Puntos: 1"];
+nodo1368671104->nodo32697742;
+nodo32697742[label="Letra: j\n Puntos: 8"];
+nodo895128746[label="Jugador: mady"];
+nodo895128746->nodo1101693280;
+nodo895128746->nodo855225386;
+nodo855225386[label="Letra: e\n Puntos: 1"];
+nodo855225386->nodo1099069878;
+nodo1099069878[label="Letra: q\n Puntos: 5"];
+nodo1099069878->nodo1460298389;
+nodo1460298389[label="Letra: a\n Puntos: 1"];
+nodo1460298389->nodo1119770773;
+nodo1119770773[label="Letra: y\n Puntos: 4"];
+nodo1119770773->nodo1025113100;
+nodo1025113100[label="Letra: e\n Puntos: 1"];
+nodo1025113100->nodo1870953936;
+nodo1870953936[label="Letra: v\n Puntos: 4"];
+nodo1870953936->nodo1797174399;
+nodo1797174399[label="Letra: a\n Puntos: 1"];
+nodo1101693280[label="Jugador: andrea"];
+nodo1101693280->nodo1322072946;
+nodo1101693280->nodo1532244857;
+nodo1532244857[label="Letra: f\n Puntos: 4"];
+nodo1532244857->nodo694115715;
+nodo694115715[label="Letra: e\n Puntos: 1"];
+nodo694115715->nodo1710874501;
+nodo1710874501[label="Letra: h\n Puntos: 4"];
+nodo1710874501->nodo2077893129;
+nodo2077893129[label="Letra: a\n Puntos: 1"];
+nodo2077893129->nodo32442864;
+nodo32442864[label="Letra: p\n Puntos: 3"];
+nodo32442864->nodo1376780043;
+nodo1376780043[label="Letra: e\n Puntos: 1"];
+nodo1376780043->nodo2040596280;
+nodo2040596280[label="Letra: m\n Puntos: 3"];
 
 }

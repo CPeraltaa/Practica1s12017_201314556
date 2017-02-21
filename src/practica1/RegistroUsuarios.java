@@ -16,7 +16,7 @@ public class RegistroUsuarios extends javax.swing.JFrame {
      */
     
     ListaJugadores listacircular; 
-    ListaPalabras diccionario;
+    ListaPalabras diccionario;    
     public RegistroUsuarios() {
         initComponents();        
     }
@@ -26,7 +26,7 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         VentanaPrincipal nuevo;
         nuevo = vn;
         listacircular = nuevo.getLj();
-        diccionario = nuevo.getLp();
+        diccionario = nuevo.getLp();        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,6 +42,7 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         btnPlay = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,6 +62,13 @@ public class RegistroUsuarios extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Revolver fichas");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -74,11 +82,13 @@ public class RegistroUsuarios extends javax.swing.JFrame {
                         .addGap(118, 118, 118)
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
+                        .addGap(32, 32, 32)
+                        .addComponent(jButton1)
+                        .addGap(38, 38, 38)
                         .addComponent(btnAgregar)
                         .addGap(26, 26, 26)
                         .addComponent(btnPlay)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,24 +100,24 @@ public class RegistroUsuarios extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
-                    .addComponent(btnPlay))
-                .addContainerGap())
+                    .addComponent(btnPlay)
+                    .addComponent(jButton1))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
+
+        jButton1.getAccessibleContext().setAccessibleName("btnRevolver");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addGap(0, 15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 200, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -122,6 +132,10 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         nuevo.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnPlayActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       listacircular.revolver();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public ListaJugadores getListacircular() {
         return listacircular;
@@ -169,6 +183,7 @@ public class RegistroUsuarios extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnPlay;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtNombre;

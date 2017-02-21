@@ -5,8 +5,6 @@
  */
 package practica1;
 
-import javax.swing.ImageIcon;
-
 /**
  *
  * @author Carlos
@@ -18,6 +16,7 @@ public class VentanaJuego extends javax.swing.JFrame {
      */
     ListaJugadores listacircular;    
     ListaPalabras diccionario;
+    
     public VentanaJuego() {
         initComponents();
     }

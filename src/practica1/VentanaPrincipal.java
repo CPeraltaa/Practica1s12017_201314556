@@ -21,7 +21,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     ListaJugadores lj = new ListaJugadores();
     ListaFichas lf = new ListaFichas();
     ListaPalabras lp = new ListaPalabras();
-
+    
     public ListaJugadores getLj() {
         return lj;
     }
