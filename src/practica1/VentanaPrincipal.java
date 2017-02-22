@@ -5,6 +5,20 @@
  */
 package practica1;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 /**
  *
  * @author Carlos
@@ -17,11 +31,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
     }
-    
+
     ListaJugadores lj = new ListaJugadores();
     ListaFichas lf = new ListaFichas();
     ListaPalabras lp = new ListaPalabras();
-    
+    matriz_Ortogonal matriz = new matriz_Ortogonal();
+
+    public matriz_Ortogonal getMatriz() {
+        return matriz;
+    }
+
     public ListaJugadores getLj() {
         return lj;
     }
@@ -32,6 +51,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public ListaPalabras getLp() {
         return lp;
+    }
+
+    public static void readXML(String f){
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        try {
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document doc = builder.parse(f);
+            NodeList doblesList = doc.getElementsByTagName("dobles");
+            for (int i=0; i<doblesList.getLength();i++){
+                Node d = doblesList.item(i);
+                if(d.getNodeType()==Node.ELEMENT_NODE){
+                    Element dobles = (Element) d;
+                    NodeList casillaList = dobles.getChildNodes();
+                    for (int j=0; j<casillaList.getLength();i++){
+                        Node c = casillaList.item(j);
+                        if(c.getNodeType()==Node.ELEMENT_NODE){
+                            Element casilla = (Element) c;
+                            System.out.println();
+                            
+                        }
+                    }
+                }
+            }
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -49,8 +98,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Pantalla inicial");
 
         jButton1.setText("Cargar archivo XML");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Jugar (:");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +164,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String ruta = JOptionPane.showInputDialog(null, "Ingrese la ruta de archivo");
+        readXML(ruta);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -138,7 +198,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {                
+            public void run() {
                 new VentanaPrincipal().setVisible(true);
             }
         });

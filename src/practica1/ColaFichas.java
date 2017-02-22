@@ -19,16 +19,7 @@ public class ColaFichas {
 
     NodoColaFichas inicio, fin;
     int tamaño;
-    ListaTemporal lt = new ListaTemporal();
-
-    /*variables para random*/
-    int Ac, Ec = 12;
-    int Oc = 9;
-    int Ic, Sc = 6;
-    int Nc, Rc, Uc, Dc = 5;
-    int Lc, Tc, Cc = 4;
-    int Gc, Bc, Mc, Pc, Hc = 2;
-    int Fc, Vc, Yc, Qc, Jc, Ñc, Xc, Zc = 1;
+    ListaTemporal lt = new ListaTemporal();    
 
     public ColaFichas() {
         inicio = fin = null;
@@ -79,7 +70,7 @@ public class ColaFichas {
             wr = new PrintWriter(bw);
 
             wr.write("digraph ListaS{\n");
-            wr.append("label= \"Cola\"\n");
+            wr.append("label= \"Cola de fichas\"\n");
             wr.append("\tnode [fontcolor=\"red\", height=0.5, color=\"black\"]\n");
             wr.append("\tedge [color=\"black\", dir=fordware]\n");
             auxLd(wr);

@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +20,7 @@ public class ListaJugadores {
     NodoJugadores ultimo;
     ColaFichas cola = new ColaFichas();    
     int bandera =0;
+    int cantidad_jugadores = 0;
     public ListaJugadores(){
         ultimo=null;        
     }
@@ -34,29 +36,20 @@ public class ListaJugadores {
                 Thread.sleep(4000);
             } catch (Exception e) {
             }
-            for (int i = 0; i<95; i++){
-                //Random aleatorio = new Random(); 
-               // int numero = aleatorio.nextInt(2)+1;
+            for (int i = 0; i<95; i++){                
                 int j;
-                char a;
-                //switch(numero){
-                   // case 1:
+                char a;                
                    if(cola.lt.fin!=null){
                         a=cola.lt.ExtraerFinal();
                         j=cola.retornaValor(a);
                         cola.insertar(a, j);
-                   }
-                      //  break;
-                   // case 2:
+                   }                      
                    if (cola.lt.inicio!=null){
                         a = cola.lt.ExtraerInicio();
                         j=cola.retornaValor(a);
-                        cola.insertar(a, j);
-                       // break;
-                   }
-               // } 
-            }
-            cola.graficar();
+                        cola.insertar(a, j);                      
+                   }               
+            }            
             bandera++;
         }else{
             System.out.println("Ya se ha llenado la cola de fichas aleatoriamente");
@@ -64,6 +57,8 @@ public class ListaJugadores {
     }            
     
     public ListaJugadores insertar(String name){
+        cantidad_jugadores++;
+        if (cantidad_jugadores<14){            
         NodoJugadores nuevo = new NodoJugadores(name);        
         for (int i = 0; i<7; i++){
             int temp;
@@ -78,7 +73,11 @@ public class ListaJugadores {
             ultimo.siguiente=nuevo;            
         }
         ultimo=nuevo;
+        }else{
+            JOptionPane.showMessageDialog(null, "Fichas insuficientes para agregar jugador");
+        }
         return this;
+        
     }
     
     public void mostrarLista(){
@@ -87,6 +86,25 @@ public class ListaJugadores {
             System.out.println(auxiliar.nombre);
             auxiliar=auxiliar.siguiente;
         }while(auxiliar!=ultimo.siguiente);
+    }
+    
+    public char buscar(String name, char letra){
+        NodoJugadores actual=ultimo;
+        boolean encontrado=false;
+        while(actual.siguiente!=ultimo && !encontrado){
+            encontrado=(actual.siguiente.nombre.equals(name));
+            if(!encontrado){
+                actual=actual.siguiente;
+            }
+        }
+        encontrado=(actual.siguiente.nombre.equals(name));
+        if(encontrado){
+            char b;
+            b = actual.fichas.ExtraerInicio();
+            actual.fichas.InsertarFinal_ls(letra, 1);
+            return b;
+        }
+      return 'c'; 
     }
     
     public boolean eliminar(String name){
@@ -128,7 +146,7 @@ public class ListaJugadores {
                 wr=new PrintWriter(bw);
                                 		
 		wr.write("digraph ListaS{\n");
-                wr.append("label= \"Lista circular\"\n");
+                wr.append("label= \"Lista circular de jugadores\"\n");
                 wr.append("\tnode [fontcolor=\"red\", height=0.5, color=\"black\"]\n");
                 wr.append("\tedge [color=\"black\", dir=fordware]\n");
                 auxLd(wr);                

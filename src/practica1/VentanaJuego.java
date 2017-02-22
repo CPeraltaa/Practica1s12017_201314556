@@ -5,6 +5,7 @@
  */
 package practica1;
 
+
 /**
  *
  * @author Carlos
@@ -16,17 +17,49 @@ public class VentanaJuego extends javax.swing.JFrame {
      */
     ListaJugadores listacircular;    
     ListaPalabras diccionario;
+    matriz_Ortogonal tablero;
+    int bandera = 0;
     
     public VentanaJuego() {
         initComponents();
     }
     
     public VentanaJuego(RegistroUsuarios vn){
+        int j =0;
         initComponents();
         RegistroUsuarios nuevo;
         nuevo = vn;
         listacircular = nuevo.getListacircular();
         diccionario = nuevo.getDiccionario();
+        tablero = nuevo.getMat();        
+        lblJugador.setText(listacircular.ultimo.nombre);
+        cbLetra1.setText(String.valueOf(listacircular.cola.inicioCola()));
+        NodoFichas temporal2 = listacircular.ultimo.fichas.inicio;
+                if(temporal2!=null){
+                    while(temporal2!=null){
+                     j++;
+                     switch(j){
+                         case 1:
+                               btnLetra1.setText(String.valueOf(temporal2.letra));
+                         case 2:
+                             btnLetra2.setText(String.valueOf(temporal2.letra));
+                         case 3:
+                             btnLetra3.setText(String.valueOf(temporal2.letra));
+                         case 4:
+                             btnLetra4.setText(String.valueOf(temporal2.letra));
+                         case 5:
+                             btnLetra5.setText(String.valueOf(temporal2.letra));
+                         case 6:
+                             btnLetra6.setText(String.valueOf(temporal2.letra));
+                         case 7:
+                             btnLetra7.setText(String.valueOf(temporal2.letra));
+                         default:
+                             //nada
+                     }
+                     temporal2=temporal2.siguiente;
+                    }
+                }
+                
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -39,6 +72,21 @@ public class VentanaJuego extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        btnLetra1 = new javax.swing.JButton();
+        btnLetra2 = new javax.swing.JButton();
+        btnLetra3 = new javax.swing.JButton();
+        btnLetra4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cbLetra1 = new javax.swing.JCheckBox();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        lblJugador = new javax.swing.JLabel();
+        btnLetra5 = new javax.swing.JButton();
+        btnLetra6 = new javax.swing.JButton();
+        btnLetra7 = new javax.swing.JButton();
+        txtPalabra = new javax.swing.JTextField();
+        btnAgregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,32 +97,138 @@ public class VentanaJuego extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Fichas disponibles");
+
+        jButton6.setText("Intercambiar");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("Cambiar turno");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Turno actual:");
+
+        btnAgregar.setText("Agregar palabra");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(734, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLetra1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLetra2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLetra3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLetra4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLetra5, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLetra6, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLetra7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton7)
+                            .addComponent(jButton1))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGap(675, 675, 675)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton6)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(cbLetra1)))
+                .addContainerGap(69, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtPalabra, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnAgregar)
+                        .addGap(29, 29, 29))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(440, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2))
+                    .addComponent(lblJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                        .addComponent(btnAgregar)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtPalabra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton6)
+                        .addGap(6, 6, 6)
+                        .addComponent(cbLetra1)
+                        .addGap(18, 75, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btnLetra2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnLetra3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnLetra4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnLetra1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnLetra5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnLetra6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnLetra7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton7)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)
+                                .addGap(9, 9, 9)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(36, 36, 36))))
         );
 
         jButton1.getAccessibleContext().setAccessibleName("btnGrafica");
+        btnLetra1.getAccessibleContext().setAccessibleName("btnLetra1");
+        btnLetra2.getAccessibleContext().setAccessibleName("btnLetra2");
+        btnLetra3.getAccessibleContext().setAccessibleName("btnLetra3");
+        btnLetra4.getAccessibleContext().setAccessibleName("btnLetra4");
+        cbLetra1.getAccessibleContext().setAccessibleName("cbLetra6");
+        jButton6.getAccessibleContext().setAccessibleName("btnIntercambio");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,9 +240,95 @@ public class VentanaJuego extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         listacircular.graficar();
+        listacircular.cola.graficar();
+        diccionario.graficar();     //falta insertar en diccionario desde XML
+        tablero.graficarMatriz(); //falta insertar desde XML
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+       bandera++;
+       int j =0;
+       cbLetra1.setText(String.valueOf(listacircular.cola.inicioCola()));
+        if(bandera < listacircular.cantidad_jugadores){
+           NodoJugadores temporal = listacircular.ultimo;
+           for (int i = 0; i < bandera; i++){
+               temporal = temporal.siguiente;               
+           }
+        lblJugador.setText(temporal.nombre);
+        NodoFichas temporal2 = temporal.fichas.inicio;
+                if(temporal2!=null){
+                    while(temporal2!=null){
+                     j++;
+                     switch(j){
+                         case 1:
+                               btnLetra1.setText(String.valueOf(temporal2.letra));
+                         case 2:
+                             btnLetra2.setText(String.valueOf(temporal2.letra));
+                         case 3:
+                             btnLetra3.setText(String.valueOf(temporal2.letra));
+                         case 4:
+                             btnLetra4.setText(String.valueOf(temporal2.letra));
+                         case 5:
+                             btnLetra5.setText(String.valueOf(temporal2.letra));
+                         case 6:
+                             btnLetra6.setText(String.valueOf(temporal2.letra));
+                         case 7:
+                             btnLetra7.setText(String.valueOf(temporal2.letra));
+                         default:
+                             //nada
+                     }
+                     temporal2=temporal2.siguiente;
+                    }
+                }
+       }else{
+           bandera = 0;
+           cbLetra1.setText(String.valueOf(listacircular.cola.inicioCola()));
+           lblJugador.setText(listacircular.ultimo.nombre);
+           NodoFichas temporal2 = listacircular.ultimo.fichas.inicio;
+                if(temporal2!=null){
+                    while(temporal2!=null){
+                     j++;
+                     switch(j){
+                         case 1:
+                               btnLetra1.setText(String.valueOf(temporal2.letra));
+                         case 2:
+                             btnLetra2.setText(String.valueOf(temporal2.letra));
+                         case 3:
+                             btnLetra3.setText(String.valueOf(temporal2.letra));
+                         case 4:
+                             btnLetra4.setText(String.valueOf(temporal2.letra));
+                         case 5:
+                             btnLetra5.setText(String.valueOf(temporal2.letra));
+                         case 6:
+                             btnLetra6.setText(String.valueOf(temporal2.letra));
+                         case 7:
+                             btnLetra7.setText(String.valueOf(temporal2.letra));
+                         default:
+                             //nada
+                     }
+                     temporal2=temporal2.siguiente;
+                    }
+                }
+       }
+       
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        diccionario.InsertarFinal_ls(txtPalabra.getText());
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        if(cbLetra1.isSelected()){
+            char pop;
+            char cocaine;
+            pop = listacircular.cola.pop();
+            cocaine = listacircular.buscar(lblJugador.getText(), pop);
+            listacircular.cola.insertar(cocaine, 1);                        
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -125,7 +365,22 @@ public class VentanaJuego extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnLetra1;
+    private javax.swing.JButton btnLetra2;
+    private javax.swing.JButton btnLetra3;
+    private javax.swing.JButton btnLetra4;
+    private javax.swing.JButton btnLetra5;
+    private javax.swing.JButton btnLetra6;
+    private javax.swing.JButton btnLetra7;
+    private javax.swing.JCheckBox cbLetra1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblJugador;
+    private javax.swing.JTextField txtPalabra;
     // End of variables declaration//GEN-END:variables
 }

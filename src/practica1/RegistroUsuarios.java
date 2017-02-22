@@ -16,7 +16,8 @@ public class RegistroUsuarios extends javax.swing.JFrame {
      */
     
     ListaJugadores listacircular; 
-    ListaPalabras diccionario;    
+    ListaPalabras diccionario;
+    matriz_Ortogonal mat;    
     public RegistroUsuarios() {
         initComponents();        
     }
@@ -26,7 +27,12 @@ public class RegistroUsuarios extends javax.swing.JFrame {
         VentanaPrincipal nuevo;
         nuevo = vn;
         listacircular = nuevo.getLj();
-        diccionario = nuevo.getLp();        
+        diccionario = nuevo.getLp();
+        mat=nuevo.getMatriz();
+    }
+
+    public matriz_Ortogonal getMat() {
+        return mat;
     }
     /**
      * This method is called from within the constructor to initialize the form.
